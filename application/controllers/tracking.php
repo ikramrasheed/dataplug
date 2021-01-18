@@ -51,7 +51,8 @@ class Tracking extends CI_Controller {
             'data_save' => json_encode($dataresultnew),
             'data_type' => 'single'
         );
-        $tracking_inserted_id = $this->form_results_model->save_mobile_tracking($tracking_temp);
+        $tracking_inserted_id = $this->form_results_model->
+        save_mobile_tracking($tracking_temp);
 
 
 
@@ -82,18 +83,23 @@ class Tracking extends CI_Controller {
 
         if (!$ret_ins) {
             $err_msg = $this->db->_error_message();
-            $this->form_results_model->update_mobile_tracking($tracking_inserted_id, array('error' => $err_msg));
+            $this->form_results_model->
+            update_mobile_tracking($tracking_inserted_id, 
+            	array('error' => $err_msg));
 
             echo $jsone_array = array(
         'error' => $err_msg
             );
         }
-        //$this->form_results_model->remove_mobile_tracking($tracking_inserted_id,array('error'=>$err_msg));
-        exit();
+        /*$this->form_results_model->
+        remove_mobile_tracking($tracking_inserted_id,
+        array('error'=>$err_msg));
+        exit();*/
     }
 
     /**
-     * This function is used for saving the record which sent from android application
+     * This function is used for saving the record which 
+     * sent from android application
      * 
      * @return json
      * @author Zahid Nadeem <zahidiubb@yahoo.com>
@@ -154,13 +160,16 @@ exit;*/
 
 
       
-        $tracking_inserted_temp_id = $this->form_results_model->save_mobile_tracking($tracking_temp);
+        $tracking_inserted_temp_id = $this->
+        form_results_model->save_mobile_tracking($tracking_temp);
         //If JSON currept then not save
         $result = json_decode($tracking_records,true);
         if ($result === null) {
             $err_msg = 'Invalid JSON';
             $jsone_array = array('error' => $err_msg);
-            $this->form_results_model->update_mobile_tracking($tracking_inserted_temp_id,array('error'=>$err_msg));
+            $this->form_results_model->
+            update_mobile_tracking($tracking_inserted_temp_id,
+            	array('error'=>$err_msg));
             echo json_encode($jsone_array);
             exit;
         }
@@ -183,7 +192,9 @@ exit;*/
         {
             $succ_msg = 'Duplicate JSON';
             $jsone_array = array('success' => $succ_msg);
-            $this->form_results_model->update_mobile_tracking($tracking_inserted_temp_id,array('error'=>$succ_msg));
+            $this->form_results_model->
+            update_mobile_tracking($tracking_inserted_temp_id,
+            	array('error'=>$succ_msg));
             echo json_encode($jsone_array);
             exit;
         }
