@@ -94,7 +94,8 @@ class Tracking extends CI_Controller {
         /*$this->form_results_model->
         remove_mobile_tracking($tracking_inserted_id,
         array('error'=>$err_msg));
-        exit();*/
+        */
+        exit();
     }
 
     /**
@@ -247,18 +248,25 @@ try {
         $err_msg = $this->db->_error_message();
 
         $jsone_array = array('error' => $err_msg);
-        $this->form_results_model->update_mobile_tracking($tracking_inserted_temp_id,array('error'=>$err_msg));
+        $this->form_results_model->
+        update_mobile_tracking($tracking_inserted_temp_id,
+        	array('error'=>$err_msg));
         echo json_encode($jsone_array);
         exit;
     }
     else{
-      $this->form_results_model->remove_mobile_tracking($tracking_inserted_temp_id);
-      //$this->form_results_model->update_mobile_tracking($tracking_inserted_temp_id,array('error'=>'submitted'));
+      $this->form_results_model->
+      remove_mobile_tracking($tracking_inserted_temp_id);
+      /*$this->form_results_model->
+      update_mobile_tracking($tracking_inserted_temp_id,
+      array('error'=>'submitted'));*/
     }
 
 
 }catch (Exception $e) {
-        $this->form_results_model->update_mobile_tracking($tracking_inserted_temp_id,array('error'=>$e->message()));
+        $this->form_results_model->
+        update_mobile_tracking($tracking_inserted_temp_id,
+        	array('error'=>$e->message()));
         echo json_encode($jsone_array);
         exit;
 }
@@ -279,7 +287,9 @@ try {
             'success' => 'Tracking Record submitted successfully!'
         );
         echo json_encode($jsone_array);
-        //$this->form_results_model->remove_mobile_tracking($tracking_inserted_id,array('error'=>$err_msg));
+        /*$this->form_results_model->
+        remove_mobile_tracking($tracking_inserted_id,
+        	array('error'=>$err_msg));*/
         exit();
     }
 
@@ -303,13 +313,17 @@ exit;*/
 
 
       
-        // $tracking_inserted_temp_id = $this->form_results_model->save_mobile_tracking($tracking_temp);
+        /* $tracking_inserted_temp_id = $this->
+        form_results_model->
+        save_mobile_tracking($tracking_temp);*/
         // //If JSON currept then not save
         // $result = json_decode($tracking_records,true);
         // if ($result === null) {
         //     $err_msg = 'Invalid JSON';
         //     $jsone_array = array('error' => $err_msg);
-        //     $this->form_results_model->update_mobile_tracking($tracking_inserted_temp_id,array('error'=>$err_msg));
+        /*     $this->form_results_model->
+        update_mobile_tracking($tracking_inserted_temp_id,
+        array('error'=>$err_msg));*/
         //     echo json_encode($jsone_array);
         //     exit;
         // }
@@ -342,8 +356,10 @@ exit;*/
           if($d>0)   {
             $newDistance+=$distance-$lastDistance;   
           }
-          echo $r['gpsTime']." =>> ".$newDistance." = ".$distance." - ".$lastDistance."<br />";
-          echo $r['id']." -> ".$r['gpsTime']." : D:".$distance." LD:".$lastDistance." ND:".$newDistance."<br />";
+          echo $r['gpsTime']." =>> ".$newDistance." = ".
+          $distance." - ".$lastDistance."<br />";
+          echo $r['id']." -> ".$r['gpsTime']." : D:".
+          $distance." LD:".$lastDistance." ND:".$newDistance."<br />";
           $lastDistance=$distance;    
 
           //print_r($r);
@@ -382,18 +398,25 @@ exit;*/
 //         $err_msg = $this->db->_error_message();
 
 //         $jsone_array = array('error' => $err_msg);
-//         $this->form_results_model->update_mobile_tracking($tracking_inserted_temp_id,array('error'=>$err_msg));
+/*       $this->form_results_model->
+        update_mobile_tracking($tracking_inserted_temp_id,
+        	array('error'=>$err_msg));*/
 //         echo json_encode($jsone_array);
 //         exit;
 //     }
 //     else{
-//       $this->form_results_model->remove_mobile_tracking($tracking_inserted_temp_id);
-//       //$this->form_results_model->update_mobile_tracking($tracking_inserted_temp_id,array('error'=>'submitted'));
+/*       $this->form_results_model->
+        	remove_mobile_tracking($tracking_inserted_temp_id);*/
+/*       $this->form_results_model->
+        	update_mobile_tracking($tracking_inserted_temp_id,
+        		array('error'=>'submitted'));*/
 //     }
 
 
 // }catch (Exception $e) {
-//         $this->form_results_model->update_mobile_tracking($tracking_inserted_temp_id,array('error'=>$e->message()));
+/*         $this->form_results_model->
+        	update_mobile_tracking($tracking_inserted_temp_id,
+        	array('error'=>$e->message()));*/
 //         echo json_encode($jsone_array);
 //         exit;
 // }
@@ -414,7 +437,9 @@ exit;*/
         //     'success' => 'Tracking Record submitted successfully!'
         // );
         // echo json_encode($jsone_array);
-        // //$this->form_results_model->remove_mobile_tracking($tracking_inserted_id,array('error'=>$err_msg));
+        /* $this->form_results_model->
+        	remove_mobile_tracking($tracking_inserted_id,
+        		array('error'=>$err_msg));*/
         // exit();
     }
 
