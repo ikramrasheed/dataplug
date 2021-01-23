@@ -459,7 +459,8 @@ exit;*/
       'data_save' => json_encode($records),
       'data_type' => 'bulk'
       );
-      $tracking_inserted_id = $this->form_results_model->save_mobile_tracking($tracking_temp);
+      $tracking_inserted_id = $this->
+      form_results_model->save_mobile_tracking($tracking_temp);
 
       header("Content-Length: 1");
       header("HTTP/1.1 200 OK");
@@ -505,7 +506,9 @@ exit;*/
 
       if (!$ret_ins) {
       $err_msg = $this->db->_error_message();
-      $this->form_results_model->update_mobile_tracking($tracking_inserted_id, array('error' => $err_msg));
+      $this->form_results_model->
+      update_mobile_tracking($tracking_inserted_id,
+       array('error' => $err_msg));
 
       echo $jsone_array = array(
       'error' => $err_msg
@@ -515,7 +518,9 @@ exit;*/
       }
 
 
-      //$this->form_results_model->remove_mobile_tracking($tracking_inserted_id,array('error'=>$err_msg));
+      /*$this->form_results_model->
+      remove_mobile_tracking($tracking_inserted_id,
+      array('error'=>$err_msg));*/
       exit();
       }
      */
@@ -535,7 +540,8 @@ exit;*/
             unset($records['imei_no']);
             foreach ($records as $r_key => $r_value) {
                 $gpsTime = date('Y-m-d H:i:s', strtotime($r_value['gpsTime']));
-                $deviceTS = date('Y-m-d H:i:s', strtotime($r_value['deviceTS']));
+                $deviceTS = date('Y-m-d H:i:s', 
+                	strtotime($r_value['deviceTS']));
                 $created_datetime = date('Y-m-d H:i:s');
                 $dataresultnew = array(
                     'app_id' => $lval['app_id'],
@@ -571,13 +577,17 @@ exit;*/
             if (isset($_REQUEST ['imei_no']) && $_REQUEST ['imei_no'] != '') {
                 $que .= " and imei_no ='" . $_REQUEST['imei_no'] . "'";
             }
-            if (isset($_REQUEST ['date_time']) && $_REQUEST ['date_time'] != '') {
-                $activity_datetime = date('Y-m-d', strtotime($_REQUEST ['date_time']));
-                $que .= " and DATE(`gps_datetime`)='" . $activity_datetime . "'";
+            if (isset($_REQUEST ['date_time']) && 
+            	$_REQUEST ['date_time'] != '') {
+                $activity_datetime = date('Y-m-d',
+                 strtotime($_REQUEST ['date_time']));
+                $que .= " and DATE(`gps_datetime`)='" 
+                . $activity_datetime . "'";
             }
 
 
-            $qry_str = "SELECT * FROM $table_name WHERE $que order by gps_datetime desc";
+            $qry_str = "SELECT * FROM $table_name 
+            WHERE $que order by gps_datetime desc";
             $query = $this->db->query($qry_str);
             $api_data = $query->result_array();
             //print "<pre>";
@@ -608,12 +618,15 @@ exit;*/
             {
                 $out['status']=true;
                 echo json_encode($out);
-//                echo json_encode(array("status" => true, "records" => json_encode($out)));
+/*                echo json_encode(array("status" => true, 
+                "records" => json_encode($out)));*/
             }else
-                echo json_encode(array("status" => false, "message" => "Record not found"));
+                echo json_encode(array("status" => false,
+                 "message" => "Record not found"));
         }
         else {
-            echo json_encode(array("status" => false, "message" => "Please provide correct app_id"));
+            echo json_encode(array("status" => false,
+             "message" => "Please provide correct app_id"));
         }
         exit();
     }
@@ -631,12 +644,16 @@ exit;*/
             if (isset($_REQUEST ['imei_no']) && $_REQUEST ['imei_no'] != '') {
                 $que .= " and imei_no ='" . $_REQUEST['imei_no'] . "'";
             }
-            if (isset($_REQUEST ['date_time']) && $_REQUEST ['date_time'] != '') {
-                $activity_datetime = date('Y-m-d', strtotime($_REQUEST ['date_time']));
-                $que .= " and DATE(`created_datetime`)='" . $activity_datetime . "'";
+            if (isset($_REQUEST ['date_time']) && 
+            	$_REQUEST ['date_time'] != '') {
+                $activity_datetime = date('Y-m-d',
+                 strtotime($_REQUEST ['date_time']));
+                $que .= " and 
+                DATE(`created_datetime`)='" . $activity_datetime . "'";
             }
 
-            $qry_str = "SELECT * FROM $table_name WHERE $que order by gps_datetime desc";
+            $qry_str =
+             "SELECT * FROM $table_name WHERE $que order by gps_datetime desc";
             $query = $this->db->query($qry_str);
             $api_data = $query->result_array();
             //print "<pre>";
@@ -647,10 +664,12 @@ exit;*/
             {
                 echo json_encode($api_data);
             }else
-                echo json_encode(array("status" => false, "message" => "Record not found"));
+                echo json_encode(array("status" => false,
+                 "message" => "Record not found"));
         }
         else {
-            echo json_encode(array("status" => false, "message" => "Please provide correct app_id"));
+            echo json_encode(array("status" => false,
+             "message" => "Please provide correct app_id"));
         }
         exit();
     }
